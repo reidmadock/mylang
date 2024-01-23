@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 
+#define EXIT_SUCCESS 0;
+
 /* Declare a buffer */
 static char input[2048];
 
@@ -30,5 +32,5 @@ int main(int argc, char** argv) {
 		printf("No you're a %s", input);
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
