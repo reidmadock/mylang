@@ -7,6 +7,10 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+
+#include <editline/readline.h>
+#include <editline/history.h>
 
 #define EXIT_SUCCESS 0;
 
@@ -18,18 +22,20 @@ int main(int argc, char** argv) {
 	puts("Lispy version: 0.0.0.0.1");
 	puts("Press Ctrl+C to exit\n");
 
-
 	/* Infinite loop */
 	while(1) {
 		/* Output prompt. */
-		// Why fputs vs puts?
-		fputs("Lispy> ", stdout);
-		
-		/* Read a line of user input max size 2048 */
-		fgets(input, 2048, stdin);
+		// Why fputs vs puts? Because puts adds a \n
+		char *input = readline("lispy> ");
+
+		/* Add history */
+		add_history(input);
 
 		/* Echo it back to user */
-		printf("No you're a %s", input);
+		printf("No you're a %s\n", input);
+	
+		/* Free the memory */
+		free(input);
 	}
 
 	return EXIT_SUCCESS;
